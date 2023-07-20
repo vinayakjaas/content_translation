@@ -57,6 +57,7 @@ export class TexttranslationComponent implements AfterContentInit {
   selectedTargetLanguage: string = 'sl';
   translatedOutput: string | undefined;
   showTranslation: boolean = false;
+  showContentElement: boolean = true;
 
   constructor(private http: HttpClient) {}
 
@@ -113,6 +114,7 @@ export class TexttranslationComponent implements AfterContentInit {
         ) {
           this.translatedOutput = response.pipelineResponse[0].output[0].target;
           this.showTranslation = true;
+          this.showContentElement = false; // Hide contentElement when the translation is triggered
         } else {
           this.translatedOutput = undefined;
           this.showTranslation = false;
@@ -124,6 +126,10 @@ export class TexttranslationComponent implements AfterContentInit {
         this.showTranslation = false;
       }
     );
+  }
+
+  toggleTranslation() {
+    this.showTranslation = !this.showTranslation;
   }
 
   getContent(): string {

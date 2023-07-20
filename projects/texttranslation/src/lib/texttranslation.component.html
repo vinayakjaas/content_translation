@@ -5,11 +5,12 @@
     <button (click)="translateContent()">Translate</button>
   </div>
   
+  <ng-container *ngIf="showContentElement">
+    <ng-content #contentElement></ng-content>
+  </ng-container>
+  
   <ng-container *ngIf="showTranslation">
     <div>
-      <h3>Translated Content:</h3>
       <p>{{ translatedOutput }}</p>
     </div>
   </ng-container>
-  
-  <ng-content #contentElement></ng-content>
